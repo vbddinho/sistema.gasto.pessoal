@@ -16,33 +16,21 @@ import jakarta.persistence.PersistenceContext;
 public class ServiceGastos {
 
     @Autowired
-    private GastosRepository gastoRepository;
+    private GastosRepository gastosRepository;
+
     @PersistenceContext
     private EntityManager entityManager;
 
+    private ModelGasto gasto;
+
     public void SalvarGasto(ObjectNode json) {
 
-        // Optional<Usuario> usuario =
-        // usuarioRepository.findById(json.get("usuario_id").asInt());
-
-
-        List<String> p = getParcelas(json.get("parcelas").asInt(),
-         json.get("mes").asInt(),
-         json.get("ano").asInt());
-
-       
-
-         System.out.println(p);
-     
-
-        var parcela = json.get("parcelas").asInt();
-
-        // List<ModelGasto> gastos = new ArrayList<>();
+        List<String> p = getParcelas(json.get("parcelas").asInt(), json.get("mes").asInt(), json.get("ano").asInt());
 
         for (var i = 0; i < p.size(); i++) {
 
-             String[] string = p.get(i).split("-");
-             
+            String[] string = p.get(i).split("-");
+
             ModelGasto gasto = new ModelGasto();
             gasto.setNome(json.get("nome").asText());
             gasto.setValor(json.get("valor").asLong());
@@ -52,38 +40,10 @@ public class ServiceGastos {
             // gasto.setUsuario(usuario.get());
             gasto.setParcelas(i);
             gasto.setTag(json.get("tag").asText());
+
             entityManager.persist(gasto);
 
         }
-
-        // Se aplicar insert do gasto conforme o numero de parcelas
-        // List<String> parcelas = getParcelas(json.get("parcelas").asInt(),
-        // json.get("mes").asInt(),
-        // json.get("ano").asInt());
-
-        // for (var i = 0 ; i< parcelas.size(); i ++){
-
-        // System.out.println("Tamanho parcelas " + parcelas.size());
-
-        // gasto.setNome(json.get("nome").asText());
-        // gasto.setValor(json.get("valor").asLong());
-        // gasto.setProvdesc(json.get("provdesc").asText());
-        // gasto.setMes(json.get("mes").asInt());
-        // gasto.setAno(json.get("ano").asInt());
-        // // gasto.setUsuario(usuario.get());
-        // gasto.setParcelas(i);
-        // gasto.setTag(json.get("tag").asText());
-
-        // // System.out.println("Usuario = " + json.get("usuario_id").asInt());
-
-        // String[] string = parcelas.get(0).split("-");
-
-        // System.out.println("PRimeira parcela no mes ->" + string[2]);
-
-        // System.out.println("############################# " + parcelas);
-
-        // gastoRepository.saveAndFlush(gasto);
-        // }
 
     }
 
@@ -105,6 +65,19 @@ public class ServiceGastos {
         }
 
         return list;
+    }
+
+    public void DeletaGasto(int idGasto) {
+
+        gasto = gastosRepository.findById(idGasto).get();
+
+        gastosRepository.delete(gasto);
+
+    }
+
+    public ModelGasto AtualizaGasto(ModelGasto gasto) {
+
+        return gastosRepository.save(gasto);
     }
 
 }
