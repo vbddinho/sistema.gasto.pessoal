@@ -31,6 +31,12 @@ public class UsuarioController {
         
     }
 
+    public UsuarioModel ListaUsuario(UsuarioModel usuario){
+
+        return service.ListaUsuario(usuario);
+
+    }
+
     
 
 }

@@ -7,13 +7,20 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
     
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioRepository repository;
 
 
     public UsuarioModel CriaUsuario (UsuarioModel usuario){
 
 
-        return usuarioRepository.save(usuario);
+        return repository.save(usuario);
+
+    }
+
+
+    public UsuarioModel ListaUsuario(UsuarioModel usuario) {
+        
+        return repository.findById(usuario.getId()).get();
 
     }
 }
