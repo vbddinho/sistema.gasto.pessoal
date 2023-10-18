@@ -13,7 +13,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 
 @Service
-public class ServiceGastos {
+public class GastosService {
 
     @Autowired
     private GastosRepository gastosRepository;
@@ -21,7 +21,7 @@ public class ServiceGastos {
     @PersistenceContext
     private EntityManager entityManager;
 
-    private ModelGasto gasto;
+    private GastoModel gasto;
 
     public void SalvarGasto(ObjectNode json) {
 
@@ -31,7 +31,7 @@ public class ServiceGastos {
 
             String[] string = p.get(i).split("-");
 
-            ModelGasto gasto = new ModelGasto();
+            GastoModel gasto = new GastoModel();
             gasto.setNome(json.get("nome").asText());
             gasto.setValor(json.get("valor").asLong());
             gasto.setProvdesc(json.get("provdesc").asText());
@@ -67,7 +67,7 @@ public class ServiceGastos {
         return list;
     }
 
-    public void DeletaGasto(int idGasto) {
+    public void DeletaGasto(Long idGasto) {
 
         gasto = gastosRepository.findById(idGasto).get();
 
@@ -75,7 +75,7 @@ public class ServiceGastos {
 
     }
 
-    public ModelGasto AtualizaGasto(ModelGasto gasto) {
+    public GastoModel AtualizaGasto(GastoModel gasto) {
 
         return gastosRepository.save(gasto);
     }

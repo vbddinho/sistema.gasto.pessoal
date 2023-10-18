@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(of = "id")
-public class ModelGasto {
+public class GastoModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class ModelGasto {
     private int parcelas;
     private String tag;
 
-    public ModelGasto(Long id, String nome, Long valor, String provdesc, int mes, int ano, int parcelas, String tag) {
+    public GastoModel(Long id, String nome, Long valor, String provdesc, int mes, int ano, int parcelas, String tag) {
         this.id = id;
         this.nome = nome;
         this.valor = valor;
@@ -35,7 +35,7 @@ public class ModelGasto {
 
     }
 
-    public ModelGasto() {
+    public GastoModel() {
 
     }
 

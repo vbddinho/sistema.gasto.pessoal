@@ -20,15 +20,15 @@ import jakarta.transaction.Transactional;
 
 @RestController
 @RequestMapping("/gastos")
-public class ControllerGastos {
+public class GastosController {
 
     @Autowired
-    private ServiceGastos service;
+    private GastosService service;
 
     @Autowired
     private GastosRepository repository;
 
-    @PostMapping
+    @PostMapping(produces = "application/json", consumes = "application/json")
     @ResponseBody
     @Transactional
     public void CadastroGasto(@RequestBody ObjectNode json) {
@@ -38,20 +38,20 @@ public class ControllerGastos {
 
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json", consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<Page<ModelGasto>> ListaGastos (Pageable paginacao) {
+    public ResponseEntity<Page<GastoModel>> ListaGastos (Pageable paginacao) {
         // PageRequest pageRequest = PageRequest.of(0,200); // começa na pagina zero e
         // tem o total de 200 obj por pagina
 
-        Page<ModelGasto> page = repository.findAll(paginacao);
+        Page<GastoModel> page = repository.findAll(paginacao);
 
         return ResponseEntity.ok(page);
     }
 
-    @DeleteMapping(path = "/delete")
+    @DeleteMapping(path = "/delete",produces = "application/json", consumes = "application/json")
     @ResponseBody
-    public ResponseEntity<Object>  DeletaGasto(@RequestParam(name = "id") int idGasto){
+    public ResponseEntity<Object>  DeletaGasto(@RequestParam(name = "id") Long idGasto){
 
         service.DeletaGasto(idGasto);
 
@@ -61,10 +61,10 @@ public class ControllerGastos {
 
     }
     
-    @PutMapping
+    @PutMapping(produces = "application/json", consumes = "application/json")
     @ResponseBody
     @Transactional
-    public ResponseEntity AtualizaGasto (@RequestBody ModelGasto gasto){
+    public ResponseEntity AtualizaGasto (@RequestBody GastoModel gasto){
 
         service.AtualizaGasto(gasto);
 
