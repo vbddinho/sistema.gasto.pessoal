@@ -38,7 +38,7 @@ public class GastosController {
 
     }
 
-    @GetMapping(produces = "application/json", consumes = "application/json")
+    @GetMapping
     @ResponseBody
     public ResponseEntity<Page<GastoModel>> ListaGastos (Pageable paginacao) {
         // PageRequest pageRequest = PageRequest.of(0,200); // começa na pagina zero e
@@ -49,7 +49,7 @@ public class GastosController {
         return ResponseEntity.ok(page);
     }
 
-    @DeleteMapping(path = "/delete",produces = "application/json", consumes = "application/json")
+    @DeleteMapping(path = "/delete")
     @ResponseBody
     public ResponseEntity<Object>  DeletaGasto(@RequestParam(name = "id") Long idGasto){
 

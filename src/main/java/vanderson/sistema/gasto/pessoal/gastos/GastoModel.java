@@ -7,8 +7,6 @@ import lombok.Setter;
 
 @Table(name = "gastos")
 @Entity
-@Getter
-@Setter
 @EqualsAndHashCode(of = "id")
 public class GastoModel {
 
@@ -38,5 +36,71 @@ public class GastoModel {
     public GastoModel() {
 
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Long getValor() {
+		return valor;
+	}
+
+	public void setValor(Long valor) {
+		this.valor = valor;
+	}
+
+	public String getProvdesc() {
+		return provdesc;
+	}
+
+	public void setProvdesc(String provdesc) {
+		this.provdesc = provdesc;
+	}
+
+	public int getMes() {
+		return mes;
+	}
+
+	public void setMes(int mes) {
+		this.mes = mes;
+	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+
+	public int getParcelas() {
+		return parcelas;
+	}
+
+	public void setParcelas(int parcelas) {
+		this.parcelas = parcelas;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+    
+    
 
 }

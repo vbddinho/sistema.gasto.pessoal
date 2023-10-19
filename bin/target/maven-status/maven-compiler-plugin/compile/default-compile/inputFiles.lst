@@ -1,0 +1,9 @@
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/gastos/GastoModel.java
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/gastos/GastosService.java
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/gastos/GastosRepository.java
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/gastos/GastosController.java
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/usuario/UsuarioModel.java
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/usuario/UsuarioController.java
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/usuario/UsuarioRepository.java
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/Application.java
+/siglmd/interope/scripts/sistema.gasto.pessoal/src/main/java/vanderson/sistema/gasto/pessoal/usuario/UsuarioService.java
