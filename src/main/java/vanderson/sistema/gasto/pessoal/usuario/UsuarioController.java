@@ -29,7 +29,7 @@ public class UsuarioController {
     @PostMapping(name = "Cria Usuario", produces = "application/json", consumes = "application/json")
     @ResponseBody
     @Transactional
-    public ResponseEntity CriarUsuario(@RequestBody @Valid UsuarioModel usuario, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<UsuarioModel> CriarUsuario(@RequestBody @Valid UsuarioModel usuario, UriComponentsBuilder uriBuilder) {
 
         service.CriaUsuario(usuario);
         var uri = uriBuilder.path("/usuario/{idUsuario}").buildAndExpand(usuario.getId()).toUri();
@@ -59,7 +59,7 @@ public class UsuarioController {
     @PutMapping
     @ResponseBody
     @Transactional
-    public ResponseEntity AtualizaUsuario(@RequestBody UsuarioModel usuario) {
+    public ResponseEntity<UsuarioModel> AtualizaUsuario(@RequestBody UsuarioModel usuario) {
 
         service.Atualizar(usuario);
 

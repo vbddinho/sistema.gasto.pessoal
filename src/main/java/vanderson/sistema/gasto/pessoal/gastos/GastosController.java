@@ -64,7 +64,7 @@ public class GastosController {
     @PutMapping(produces = "application/json", consumes = "application/json")
     @ResponseBody
     @Transactional
-    public ResponseEntity AtualizaGasto (@RequestBody GastoModel gasto){
+    public ResponseEntity<GastoModel> AtualizaGasto (@RequestBody GastoModel gasto){
 
         service.AtualizaGasto(gasto);
 

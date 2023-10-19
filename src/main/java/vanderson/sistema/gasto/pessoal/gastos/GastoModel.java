@@ -1,9 +1,13 @@
 package vanderson.sistema.gasto.pessoal.gastos;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import vanderson.sistema.gasto.pessoal.usuario.UsuarioModel;
 
 @Table(name = "gastos")
 @Entity
@@ -20,22 +24,37 @@ public class GastoModel {
     private int ano;
     private int parcelas;
     private String tag;
+    
+    @ManyToOne
+    private UsuarioModel usuario;
 
-    public GastoModel(Long id, String nome, Long valor, String provdesc, int mes, int ano, int parcelas, String tag) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-        this.provdesc = provdesc;
-        this.mes = mes;
-        this.ano = ano;
-        this.parcelas = parcelas;
-        this.tag = tag;
+  
+
+    public GastoModel(Long id, String nome, Long valor, String provdesc, int mes, int ano, int parcelas, String tag,
+			UsuarioModel usuario) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.valor = valor;
+		this.provdesc = provdesc;
+		this.mes = mes;
+		this.ano = ano;
+		this.parcelas = parcelas;
+		this.tag = tag;
+		this.usuario = usuario;
+	}
+
+	public GastoModel() {
 
     }
 
-    public GastoModel() {
+	public UsuarioModel getUsuario() {
+		return usuario;
+	}
 
-    }
+	public void setUsuario(UsuarioModel usuario) {
+		this.usuario = usuario;
+	}
 
 	public Long getId() {
 		return id;
