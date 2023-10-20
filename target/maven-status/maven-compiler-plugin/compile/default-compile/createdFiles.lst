@@ -1,0 +1,11 @@
+vanderson/sistema/gasto/pessoal/Application.class
+vanderson/sistema/gasto/pessoal/gastos/GastoModel.class
+vanderson/sistema/gasto/pessoal/gastos/GastosService.class
+vanderson/sistema/gasto/pessoal/usuario/UsuarioService.class
+vanderson/sistema/gasto/pessoal/usuario/UsuarioModel.class
+vanderson/sistema/gasto/pessoal/fechamento/FechamentoModel.class
+vanderson/sistema/gasto/pessoal/gastos/GastosRepository.class
+vanderson/sistema/gasto/pessoal/fechamento/FechamentoService.class
+vanderson/sistema/gasto/pessoal/usuario/UsuarioRepository.class
+vanderson/sistema/gasto/pessoal/usuario/UsuarioController.class
+vanderson/sistema/gasto/pessoal/gastos/GastosController.class
