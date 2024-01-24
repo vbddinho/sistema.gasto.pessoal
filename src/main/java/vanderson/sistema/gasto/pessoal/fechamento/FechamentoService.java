@@ -13,7 +13,7 @@ public class FechamentoService {
 	
 	public void AgruparGastos(Long ano,UsuarioModel usuario) {
 		
-		gastoRepository.findByUsuario(usuario); 
+		//  gastoRepository.findByUsuario(usuario); 
 		
 		
 		

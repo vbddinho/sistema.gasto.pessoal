@@ -1,9 +1,12 @@
 package vanderson.sistema.gasto.pessoal.gastos;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
@@ -11,27 +14,34 @@ import vanderson.sistema.gasto.pessoal.usuario.UsuarioModel;
 
 @Table(name = "gastos")
 @Entity
+// @IdClass(GastoModel.class)
 @EqualsAndHashCode(of = "id")
 public class GastoModel {
 
-    @Id
+ 
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private int parcelas;
+	private String nome;
     private Long valor;
     private String provdesc;
     private int mes;
     private int ano;
-    private int parcelas;
+	
     private String tag;
     
-    @ManyToOne
+	@ManyToOne
+    @JoinColumn(name = "usuario_id")
     private UsuarioModel usuario;
+    
 
   
 
-    public GastoModel(Long id, String nome, Long valor, String provdesc, int mes, int ano, int parcelas, String tag,
-			UsuarioModel usuario) {
+   
+
+	public GastoModel(Long id, String nome, Long valor, String provdesc, int mes, int ano, int parcelas, String tag ,UsuarioModel usuario
+	) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -119,7 +129,11 @@ public class GastoModel {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-    
-    
+	@Override
+	public String toString() {
+		return "GastoModel [id=" + id + ", parcelas=" + parcelas + ", nome=" + nome + ", valor=" + valor + ", provdesc="
+				+ provdesc + ", mes=" + mes + ", ano=" + ano + ", tag=" + tag + ", usuario=" + usuario.getId() + "]";
+	}
+
 
 }

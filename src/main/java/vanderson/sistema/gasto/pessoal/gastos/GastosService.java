@@ -3,10 +3,15 @@ package vanderson.sistema.gasto.pessoal.gastos;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import jakarta.persistence.EntityManager;
@@ -50,7 +55,7 @@ public class GastosService {
 
 			usuario = usuarioRepository.findById(json.get("usuario_id").asLong()).get();
 
-			gasto.setUsuario(usuario);
+			// gasto.setUsuario(usuario);
 
 			entityManager.persist(gasto);
 
@@ -91,6 +96,35 @@ public class GastosService {
 		return gastosRepository.save(gasto);
 	}
 
-	
-	
+	public void SalvarGasto2(String Jsongasto) throws JsonMappingException, JsonProcessingException {
+
+		System.out.println(Jsongasto);
+
+		ObjectMapper mapper = new ObjectMapper();
+		// Define que o Json deve ser compativel com a Classe de Gasto
+		mapper.readValue(Jsongasto, GastoModel.class);
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		JsonNode jsonNode = objectMapper.readTree(Jsongasto);
+
+		// Converte JsonNode para ObjectNode
+		if (jsonNode.isObject()) {
+			ObjectNode objectNode = (ObjectNode) jsonNode;
+			 System.out.println(objectNode.get("nome").asText()); 
+		}
+
+		// UsuarioModel usuario =
+		// usuarioRepository.findById(gasto.getUsuario().getId()).get();
+		// gasto.setUsuario(usuario);
+
+		// List<String> p =
+		// getParcelas(gasto.getParcelas(),gasto.getMes(),gasto.getAno());
+
+		// System.out.println(p);
+
+		// entityManager.persist(gasto);
+
+	}
+
 }

@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import jakarta.transaction.Transactional;
+import vanderson.sistema.gasto.pessoal.usuario.UsuarioModel;
+import vanderson.sistema.gasto.pessoal.usuario.UsuarioRepository;
 
 @RestController
 @RequestMapping("/gastos")
@@ -28,13 +33,25 @@ public class GastosController {
     @Autowired
     private GastosRepository repository;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    // @PostMapping(produces = "application/json", consumes = "application/json")
+    // @ResponseBody
+    // @Transactional
+    // public void CadastroGasto(@RequestBody ObjectNode json) {
+
+    //     // return service.SalvarGasto(gasto);
+    //      service.SalvarGasto(json);
+
+    // }
+
     @PostMapping(produces = "application/json", consumes = "application/json")
     @ResponseBody
     @Transactional
-    public void CadastroGasto(@RequestBody ObjectNode json) {
-
-        // return service.SalvarGasto(gasto);
-         service.SalvarGasto(json);
+    public void CadastroGasto(@RequestBody String json) throws JsonMappingException, JsonProcessingException {
+        
+         service.SalvarGasto2(json);
 
     }
 
