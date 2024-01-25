@@ -110,20 +110,33 @@ public class GastosService {
 
 		// Converte JsonNode para ObjectNode
 		if (jsonNode.isObject()) {
+
 			ObjectNode objectNode = (ObjectNode) jsonNode;
-			 System.out.println(objectNode.get("nome").asText()); 
+
+			List<String> p = getParcelas(objectNode.get("parcelas").asInt(), objectNode.get("mes").asInt(),
+					objectNode.get("ano").asInt());
+
+			for (var i = 0; i < p.size(); i++) {
+
+				String[] string = p.get(i).split("-");
+				GastoModel gasto = new GastoModel();
+				UsuarioModel usuario = new UsuarioModel();
+
+				gasto.setParcelas(i);
+				gasto.setNome(objectNode.get("nome").asText());
+				gasto.setValor(objectNode.get("valor").asLong());
+				gasto.setProvdesc(objectNode.get("provdesc").asText());
+				gasto.setMes(Integer.parseInt(string[2]));
+				gasto.setAno(Integer.parseInt(string[1]));
+				gasto.setTag(objectNode.get("tag").asText());
+
+				usuario = usuarioRepository.findById(objectNode.get("usuario").get("id").asLong()).get();
+
+				gasto.setUsuario(usuario);
+
+				entityManager.persist(gasto);
+			}
 		}
-
-		// UsuarioModel usuario =
-		// usuarioRepository.findById(gasto.getUsuario().getId()).get();
-		// gasto.setUsuario(usuario);
-
-		// List<String> p =
-		// getParcelas(gasto.getParcelas(),gasto.getMes(),gasto.getAno());
-
-		// System.out.println(p);
-
-		// entityManager.persist(gasto);
 
 	}
 

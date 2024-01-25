@@ -36,17 +36,17 @@ public class GastosController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    // @PostMapping(produces = "application/json", consumes = "application/json")
-    // @ResponseBody
-    // @Transactional
-    // public void CadastroGasto(@RequestBody ObjectNode json) {
-
-    //     // return service.SalvarGasto(gasto);
-    //      service.SalvarGasto(json);
-
-    // }
-
     @PostMapping(produces = "application/json", consumes = "application/json")
+    @ResponseBody
+    @Transactional
+    public void CadastroGasto(@RequestBody ObjectNode json) {
+
+        // return service.SalvarGasto(gasto);
+         service.SalvarGasto(json);
+
+    }
+
+    @PostMapping(path = "/salva-string",produces = "application/json", consumes = "application/json")
     @ResponseBody
     @Transactional
     public void CadastroGasto(@RequestBody String json) throws JsonMappingException, JsonProcessingException {

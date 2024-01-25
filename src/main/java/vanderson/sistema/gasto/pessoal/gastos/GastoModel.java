@@ -28,7 +28,6 @@ public class GastoModel {
     private String provdesc;
     private int mes;
     private int ano;
-	
     private String tag;
     
 	@ManyToOne
